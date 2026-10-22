@@ -379,7 +379,7 @@ textarea.field-input{resize:vertical;min-height:60px;font-family:'Barlow',sans-s
     <textarea class="field-input" id="orderReason" placeholder="e.g. US inflation data came in higher than expected — anticipating dollar strength against euro..."></textarea>
 
     <button class="submit-btn" onclick="placeOrder()">Execute Trade</button>
-    <div class="form-note">Max position: $5,000,000 · Min: $100<br>Reason must be at least 10 words</div>
+    <div class="form-note">Max position: $10,000,000 · Min: $1,000,000<br>Reason must be at least 10 words</div>
   </div>
 </div>
 
@@ -1035,7 +1035,7 @@ function placeOrder(){
   const pair=document.getElementById('orderPair').value;
   const size=parseFloat(document.getElementById('orderSize').value);
   const reason=document.getElementById('orderReason').value.trim();
-  if(!size||size<100||size>5000000){toast('Position size must be $100–$50,000','error');return;}
+  if(!size||size<1000000||size>10000000){toast('Position size must be $1,000,000–$10,000,000','error');return;}
   if(reason.split(' ').filter(w=>w).length<10){toast('Please write at least 10 words explaining your reason','error');return;}
   const openExposure=state.positions.reduce((a,p)=>a+p.size,0);
   if(openExposure+size>state.balance*0.8){toast('Insufficient balance — max 80% of balance in open positions','error');return;}
